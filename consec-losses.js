@@ -9,13 +9,9 @@ rl.question("Enter initial balance: ", (initialBalance) => {
       const balanceLossLimit = parseFloat(lossLimit)
       const risk = parseFloat(riskPercentage)
 
-      function balance(n, c = 0) {
-        let output = n
-        let count = c
+      function balance(output, count = 0) {
         if (output > balanceLossLimit) {
-          count += 1
-          output = (n * (100 - risk)) / 100
-          return balance(output, count)
+          return balance((output * (100 - risk)) / 100, ++count)
         } else {
           return count
         }
